@@ -2,7 +2,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ${PROTOTYPE_NAME}-app
-  namespace: ${KUBE_NAMESPACE}
 spec:
   replicas: 1
   selector:
@@ -29,4 +28,4 @@ spec:
                     key: password
           ports:
             - name: http
-              containerPort: 4567
+              containerPort: 3000
