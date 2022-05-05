@@ -47,6 +47,7 @@ jobs:
       - name: Template out any kube objects
         run: |
           export IMAGE_TAG=${{ github.sha }} && cat kubernetes/deployment.tpl | envsubst > kubernetes/deployment.yaml
+          cat kubernetes/ingress.tpl | envsubst > kubernetes/ingress.yaml
       - name: Deploy to Cloud Platform
         run: |
           kubectl -n ${KUBE_NAMESPACE} apply -f kubernetes/
