@@ -29,4 +29,4 @@ spec:
                     key: password
           ports:
             - name: http
-              containerPort: 3000
+              containerPort: 4567

@@ -17,5 +17,5 @@ spec:
         paths:
         - path: /
           backend:
-            serviceName: ${PROTOTYPE_NAME}
-            servicePort: 3000
+            serviceName: ${PROTOTYPE_NAME}-service
+            servicePort: 4567
