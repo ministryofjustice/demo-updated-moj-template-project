@@ -15,17 +15,6 @@ spec:
       containers:
         - name: ${PROTOTYPE_NAME}-app
           image: ${ECR_URL}:${IMAGE_TAG}
-          env:
-            - name: USERNAME
-                valueFrom:
-                  secretKeyRef:
-                    name: basic-auth
-                    key: username
-            - name: PASSWORD
-                valueFrom:
-                  secretKeyRef:
-                    name: basic-auth
-                    key: password
           ports:
             - name: http
               containerPort: 3000
