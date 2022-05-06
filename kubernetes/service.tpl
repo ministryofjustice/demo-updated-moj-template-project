@@ -10,4 +10,4 @@ spec:
     name: http
     targetPort: 3000
   selector:
-    app: prototype
+    app: ${PROTOTYPE_NAME}

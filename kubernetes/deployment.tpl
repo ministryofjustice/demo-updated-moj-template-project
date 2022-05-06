@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: moj-prototype
+  name: ${PROTOTYPE_NAME}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: prototype
+      app: ${PROTOTYPE_NAME}
   template:
     metadata:
       labels:
-        app: prototype
+        app: ${PROTOTYPE_NAME}
     spec:
       containers:
       - name: nginx
-        image: ${ECR_NAME}:${IMAGE_TAG}
+        image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/${ECR_NAME}:${IMAGE_TAG}
         env:
           - name: USERNAME
             valueFrom:
