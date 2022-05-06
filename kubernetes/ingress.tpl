@@ -15,6 +15,9 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: nginx-service
-          servicePort: 3000
+          service:
+            name: nginx-service
+            port:
+              number: 3000
