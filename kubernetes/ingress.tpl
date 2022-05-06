@@ -4,7 +4,7 @@ metadata:
   name: ${PROTOTYPE_NAME}-ingress
   annotations:
     kubernetes.io/ingress.class: nginx
-    external-dns.alpha.kubernetes.io/set-identifier: ${PROTOTYPE_NAME}-ingress-${PROTOTYPE_NAME}-green
+    external-dns.alpha.kubernetes.io/set-identifier: ${PROTOTYPE_NAME}-ingress-${KUBE_NAMESPACE}-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
   tls:
