@@ -15,10 +15,6 @@ const sessionInMemory = require('express-session')
 // Run before other code to make sure variables from .env are available
 const result = dotenv.config()
 
-if (result.error) {
-  throw result.error
-}
-
 // Local dependencies
 const middleware = [
   require('./lib/middleware/authentication/authentication.js')(),
