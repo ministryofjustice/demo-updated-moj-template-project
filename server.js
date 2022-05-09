@@ -13,7 +13,11 @@ const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 
 // Run before other code to make sure variables from .env are available
-dotenv.config()
+const result = dotenv.config()
+
+if (result.error) {
+  throw result.error
+}
 
 // Local dependencies
 const middleware = [
