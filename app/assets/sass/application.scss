@@ -16,3 +16,48 @@ $govuk-assets-path: '/govuk/assets/';
 @import "patterns/related-items";
 
 // Add extra styles here, or re-organise the Sass files in whichever way makes most sense to you
+
+@import "components/summary-card";
+@import 'components/header-bar';
+@import 'components/dashboard-card';
+@import "risk/widgets";
+@import "risk/predictor-scores";
+@import "risk/timeline";
+
+@import "layout";
+
+.pagination a:hover{
+
+      background-color: #f3f2f1;
+}
+.pills span {  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='53.7' height='53.7' viewBox='0 0 53.7 53.7'><path opacity='.6' fill='%23666E6E' d='M35.6 34.4L28 26.8l7.6-7.6c.2-.2.2-.5 0-.7l-.5-.5c-.2-.2-.5-.2-.7 0l-7.6 7.6-7.5-7.6c-.2-.2-.5-.2-.7 0l-.6.6c-.2.2-.2.5 0 .7l7.6 7.6-7.6 7.5c-.2.2-.2.5 0 .7l.5.5c.2.2.5.2.7 0l7.6-7.6 7.6 7.6c.2.2.5.2.7 0l.5-.5c.2-.2.2-.5 0-.7z'/></svg>");
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+  padding: 10px 10px 10px 40px;
+  }
+
+// @import 'max-widths';
+@import 'govuk-page-masthead';
+//
+//// tweaks to gov summary table on CYA pattern to allow for more space for values in repsonse to quetsions
+//.govuk-summary-list__key {
+//  width:50%;
+//}
+//
+//.govuk-summary-list__value {
+//  width:30%;
+//}
+
+// align make recommendation button to right
+.MRD-rec-button {
+  float:right;
+}
+
+.text-secondary {
+  color: $govuk-secondary-text-colour;
+}
+
+pre.govuk-body {
+  white-space: pre-line;
+}

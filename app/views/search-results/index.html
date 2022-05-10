@@ -1,0 +1,176 @@
+{% extends "layout.html" %}
+{% set title = 'Personal details' %}
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block beforeContent %}
+{% endblock %}
+
+{% block content %}
+
+  <h1 class="govuk-heading-xl">
+   Search for a person on probation
+  </h1>
+
+
+
+
+{%- from "moj/components/search/macro.njk" import mojSearch -%}
+
+{{ mojSearch({
+  action: '#',
+  method: 'post',
+  input: {
+    id: 'search',
+    name: 'search'
+  },
+  label: {
+    text: 'Search',
+    classes: 'govuk-!-font-weight-bold'
+  },
+  hint: {
+    text: 'Search by name, date of birth, offender manager or NDelius case reference number (CRN).'
+  },
+  button: {
+    text: 'Search'
+  }
+}) }}
+   <div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+<div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+        <h2 class="govuk-heading-m">Search results</h2>
+
+{%- from "govuk/components/table/macro.njk" import govukTable -%}
+
+{{ govukTable({
+  attributes: {
+    'data-module': 'moj-sortable-table'
+  },
+  head: [
+    {
+      text: "Name",
+      attributes: {
+        "aria-sort": "ascending"
+      }
+    },
+    {
+      text: "Case reference number (CRN)",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Date of birth",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Offender manager",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Geographical area",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Sentence type and length",
+      attributes: {
+        "aria-sort": "none"
+      }
+    },
+    {
+      text: "Risk of serious harm",
+      attributes: {
+        "aria-sort": "none"
+      }
+    }
+  ],
+  rows: [
+    [
+      {
+          html: '<p class="govuk-body-s"><a href="/case">Charles Edwin</a></p>'
+      },
+      {
+        html: '<p class="govuk-body-s">237861287361</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">24 July 1980</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">Jane Smith</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">North London</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">ORA adult custody (not PSS) 3 years</p>'
+      },
+      {
+        html: '<p class="govuk-body-s"><span class="govuk-tag govuk-tag--red govuk-body-s">High</span></p>'
+      }
+    ],
+    [
+      {
+
+          html: '<p class="govuk-body-s"><a href="/case">Charles Edwards</a></p>'
+      },
+      {
+        html: '<p class="govuk-body-s">A00001</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">25 Aug 1962</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">Judy Wick</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">North East</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">ORA adult custody (not PSS) 6 years</p>'
+      },
+      {
+        html: '<p class="govuk-body-s"><span class="govuk-tag govuk-tag--red govuk-body-s">High</span></p>'
+      }
+    ],
+    [
+      {
+
+          html: '<p class="govuk-body-s"><a href="/case">Edwin Charles</a></p>'
+      },
+      {
+        html: '<p class="govuk-body-s">A0003C</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">12 Jun 1992</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">Susan Ficus</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">South West</p>'
+      },
+      {
+        html: '<p class="govuk-body-s">Community order 14 months</p>'
+      },
+      {
+        html: '<p class="govuk-body-s"><span class="govuk-tag govuk-tag--green govuk-body-s">Low</span></p>'
+
+      }
+    ]
+  ]
+}) }}
+
+            </div>
+    </div>
+
+  </main>
+</div>
+
+
+{% endblock %}
