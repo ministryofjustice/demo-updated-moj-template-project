@@ -1,0 +1,84 @@
+{% extends "../layout.html" %}
+{% set pathQuerystring = "?v=" + variant %}
+{% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% block beforeContent %}
+    {{ govukBackLink({
+        text: "Back",
+        href: '/search'
+    }) }}
+{% endblock %}
+
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <div class="flex flex--space-between flex--align-center govuk-!-margin-bottom-4">
+                <div>
+                    <div class="govuk-caption-m">CRN: 
+                        <span data-qa='personDetails-crn'>{{ case.personDetails.crn }}</span><span style="margin:0 10px;">|</span> Date of birth: 
+                         <span data-qa='personDetails-dateOfBirth'>{{ case.personDetails.dateOfBirth | formatDateFromIsoString }}</span>
+                        (age <span data-qa='personDetails-age'>{{ case.personDetails.age }}</span>)
+                        <span style="margin:0 10px;">|</span> Gender: <span data-qa='personDetails-gender'>{{ case.personDetails.gender }}</span>
+                    </div>
+                    <div class="govuk-heading-xl govuk-!-margin-bottom-0"
+                         data-qa='sectionHeading'>{{ case.personDetails.name }}</div>
+                </div>
+                <a href="../case/rec-flow/1risk.html" class="govuk-button govuk-!-margin-bottom-0">Make a recommendation</a>
+            </div>
+
+            {{ mojSubNavigation({
+                label: 'Case summary sections',
+                items: [
+                    {
+                        text: 'Overview',
+                        href: pageUrlBase + 'overview' + pathQuerystring,
+                        active: section.id == 'overview'
+                    },
+                    {
+                        text: 'Risk',
+                        href: pageUrlBase + 'risk' + pathQuerystring,
+                        active: section.id == 'risk'
+                    },
+                    {
+                        text: 'Personal details',
+                        href: pageUrlBase + 'personal-details' + pathQuerystring,
+                        active: section.id == 'personal-details'
+                    },
+                    {
+                        text: 'Licence conditions',
+                        href: pageUrlBase + 'licence-conditions' + pathQuerystring,
+                        active: section.id == 'licence-conditions'
+                    },
+                    {
+                        text: 'Licence history',
+                        href: pageUrlBase + 'licence-history' + pathQuerystring,
+                        active: section.id == 'licence-history'
+                    },
+                    {
+                        text: 'Search contact list',
+                        href: pageUrlBase + 'contact-log' + pathQuerystring,
+                        active: section.id == 'contact-log'
+                    }
+                ]
+            }) }}
+            {% if section.id =='overview' %}
+                {% include './caseOverview.html' %}
+            {% elseif section.id =='risk' %}
+                {% include './caseRisk.html' %}
+            {% elseif section.id =='personal-details' %}
+                {% include './casePersonalDetails.html' %}
+            {% elseif section.id =='licence-history' %}
+                {% include './caseLicenceHistory.html' %}
+            {% elseif section.id =='licence-conditions' %}
+                {% include './caseLicenceConditions.html' %}
+            {% elseif section.id =='contact-log' %}
+                {% include './caseContactLog.html' %}
+            {% endif %}
+
+            
+
+          
+
+        </div>
+    </div>
+{% endblock %}

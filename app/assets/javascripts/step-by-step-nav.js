@@ -9,14 +9,14 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
   'use strict'
 
   Modules.AppStepNav = function () {
-    const actions = {} // stores text for JS appended elements 'show' and 'hide' on steps, and 'show/hide all' button
-    let rememberShownStep = false
-    let stepNavSize
-    let sessionStoreLink = 'govuk-step-nav-active-link'
-    const activeLinkClass = 'app-step-nav__list-item--active'
-    const activeStepClass = 'app-step-nav__step--active'
-    const activeLinkHref = '#content'
-    let uniqueId
+    var actions = {} // stores text for JS appended elements 'show' and 'hide' on steps, and 'show/hide all' button
+    var rememberShownStep = false
+    var stepNavSize
+    var sessionStoreLink = 'govuk-step-nav-active-link'
+    var activeLinkClass = 'app-step-nav__list-item--active'
+    var activeStepClass = 'app-step-nav__step--active'
+    var activeLinkHref = '#content'
+    var uniqueId
 
     this.start = function ($element) {
       // Indicate that js has worked
@@ -27,11 +27,11 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
 
       stepNavSize = $element.hasClass('app-step-nav--large') ? 'Big' : 'Small'
       rememberShownStep = !!$element.filter('[data-remember]').length && stepNavSize === 'Big'
-      const $steps = $element.find('.js-step')
-      const $stepHeaders = $element.find('.js-toggle-panel')
-      const totalSteps = $element.find('.js-panel').length
-      const totalLinks = $element.find('app-step-nav__link').length
-      let $showOrHideAllButton
+      var $steps = $element.find('.js-step')
+      var $stepHeaders = $element.find('.js-toggle-panel')
+      var totalSteps = $element.find('.js-panel').length
+      var totalLinks = $element.find('app-step-nav__link').length
+      var $showOrHideAllButton
 
       uniqueId = $element.data('id') || false
 
@@ -39,7 +39,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
         sessionStoreLink = sessionStoreLink + '_' + uniqueId
       }
 
-      const stepNavTracker = new StepNavTracker(totalSteps, totalLinks, uniqueId)
+      var stepNavTracker = new StepNavTracker(totalSteps, totalLinks, uniqueId)
 
       getTextForInsertedElements()
       addButtonstoSteps()
@@ -67,7 +67,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
 
       function addShowHideToggle () {
         $stepHeaders.each(function () {
-          let linkText = actions.showText // eslint-disable-line no-unused-vars
+          var linkText = actions.showText // eslint-disable-line no-unused-vars
 
           if (headerIsOpen($(this))) {
             linkText = actions.hideText
@@ -86,7 +86,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
       }
 
       function addAriaControlsAttrForShowHideAllButton () {
-        const ariaControlsValue = $element.find('.js-panel').first().attr('id')
+        var ariaControlsValue = $element.find('.js-panel').first().attr('id')
 
         $showOrHideAllButton = $element.find('.js-step-controls-button')
         $showOrHideAllButton.attr('aria-controls', ariaControlsValue)
@@ -94,10 +94,10 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
 
       // called by show all/hide all, sets all steps accordingly
       function setAllStepsShownState (isShown) {
-        const data = []
+        var data = []
 
         $.each($steps, function () {
-          const stepView = new StepView($(this))
+          var stepView = new StepView($(this))
           stepView.setIsShown(isShown)
 
           if (isShown) {
@@ -114,11 +114,11 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
 
       // called on load, determines whether each step should be open or closed
       function showPreviouslyOpenedSteps () {
-        const data = loadFromSessionStorage(uniqueId) || []
+        var data = loadFromSessionStorage(uniqueId) || []
 
         $.each($steps, function () {
-          const id = $(this).attr('id')
-          const stepView = new StepView($(this))
+          var id = $(this).attr('id')
+          var stepView = new StepView($(this))
 
           // show the step if it has been remembered or if it has the 'data-show' attribute
           if ((rememberShownStep && data.indexOf(id) > -1) || typeof $(this).attr('data-show') !== 'undefined') {
@@ -136,9 +136,9 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
 
       function addButtonstoSteps () {
         $.each($steps, function () {
-          const $step = $(this)
-          const $title = $step.find('.js-step-title')
-          const contentId = $step.find('.js-panel').first().attr('id')
+          var $step = $(this)
+          var $title = $step.find('.js-step-title')
+          var contentId = $step.find('.js-panel').first().attr('id')
 
           $title.wrapInner(
             '<span class="js-step-title-text"></span>'
@@ -155,13 +155,13 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
 
       function bindToggleForSteps (stepNavTracker) {
         $element.find('.js-toggle-panel').click(function (event) {
-          const $step = $(this).closest('.js-step')
+          var $step = $(this).closest('.js-step')
 
-          const stepView = new StepView($step)
+          var stepView = new StepView($step)
           stepView.toggle()
 
-          const stepIsOptional = typeof $step.data('optional') !== 'undefined'
-          const toggleClick = new StepToggleClick(event, stepView, $steps, stepNavTracker, stepIsOptional)
+          var stepIsOptional = typeof $step.data('optional') !== 'undefined'
+          var toggleClick = new StepToggleClick(event, stepView, $steps, stepNavTracker, stepIsOptional)
           toggleClick.track()
 
           setShowHideAllText()
@@ -173,14 +173,14 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
       // if the step is closed, remove its id from session store
       function rememberStepState ($step) {
         if (rememberShownStep) {
-          const data = JSON.parse(loadFromSessionStorage(uniqueId)) || []
-          const thisstep = $step.attr('id')
-          const shown = $step.hasClass('step-is-shown')
+          var data = JSON.parse(loadFromSessionStorage(uniqueId)) || []
+          var thisstep = $step.attr('id')
+          var shown = $step.hasClass('step-is-shown')
 
           if (shown) {
             data.push(thisstep)
           } else {
-            const i = data.indexOf(thisstep)
+            var i = data.indexOf(thisstep)
             if (i > -1) {
               data.splice(i, 1)
             }
@@ -192,9 +192,9 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
       // tracking click events on links in step content
       function bindComponentLinkClicks (stepNavTracker) {
         $element.find('.js-link').click(function (event) {
-          const linkClick = new componentLinkClick(event, stepNavTracker, $(this).attr('data-position')) // eslint-disable-line no-new, new-cap
+          var linkClick = new componentLinkClick(event, stepNavTracker, $(this).attr('data-position')) // eslint-disable-line no-new, new-cap
           linkClick.track()
-          const thisLinkHref = $(this).attr('href')
+          var thisLinkHref = $(this).attr('href')
 
           if ($(this).attr('rel') !== 'external') {
             saveToSessionStorage(sessionStoreLink, $(this).attr('data-position'))
@@ -230,13 +230,13 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
       // this code ensures only that link and its corresponding step have the highlighting
       // otherwise it accepts what the backend has already passed to the component
       function ensureOnlyOneActiveLink () {
-        const $activeLinks = $element.find('.js-list-item.' + activeLinkClass)
+        var $activeLinks = $element.find('.js-list-item.' + activeLinkClass)
 
         if ($activeLinks.length <= 1) {
           return
         }
 
-        let lastClicked = loadFromSessionStorage(sessionStoreLink) || $element.find('.' + activeLinkClass).first().attr('data-position')
+        var lastClicked = loadFromSessionStorage(sessionStoreLink) || $element.find('.' + activeLinkClass).first().attr('data-position')
 
         // it's possible for the saved link position value to not match any of the currently duplicate highlighted links
         // so check this otherwise it'll take the highlighting off all of them
@@ -264,7 +264,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
       function bindToggleShowHideAllButton (stepNavTracker) {
         $showOrHideAllButton = $element.find('.js-step-controls-button')
         $showOrHideAllButton.on('click', function () {
-          let shouldshowAll
+          var shouldshowAll
 
           if ($showOrHideAllButton.text() === actions.showAllText) {
             $showOrHideAllButton.text(actions.hideAllText)
@@ -293,7 +293,7 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
       }
 
       function setShowHideAllText () {
-        const shownSteps = $element.find('.step-is-shown').length
+        var shownSteps = $element.find('.step-is-shown').length
         // Find out if the number of is-opens == total number of steps
         if (shownSteps === totalSteps) {
           $showOrHideAllButton.text(actions.hideAllText)
@@ -304,8 +304,8 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
     }
 
     function StepView ($stepElement) {
-      const $titleLink = $stepElement.find('.js-step-title-button')
-      const $stepContent = $stepElement.find('.js-panel')
+      var $titleLink = $stepElement.find('.js-step-title-button')
+      var $stepContent = $stepElement.find('.js-panel')
 
       this.title = $stepElement.find('.js-step-title-text').text().trim()
       this.element = $stepElement
@@ -352,10 +352,10 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
 
     function StepToggleClick (event, stepView, $steps, stepNavTracker, stepIsOptional) {
       this.track = trackClick
-      const $target = $(event.target)
+      var $target = $(event.target)
 
       function trackClick () {
-        const trackingOptions = { label: trackingLabel(), dimension28: stepView.numberOfContentItems().toString() }
+        var trackingOptions = { label: trackingLabel(), dimension28: stepView.numberOfContentItems().toString() }
         stepNavTracker.track('pageElementInteraction', trackingAction(), trackingOptions)
       }
 
@@ -403,8 +403,8 @@ window.GOVUK.Modules = window.GOVUK.Modules || {};
       this.track = trackClick
 
       function trackClick () {
-        const trackingOptions = { label: $(event.target).attr('href') + ' : ' + stepNavSize }
-        const dimension28 = $(event.target).closest('.app-step-nav__list').attr('data-length')
+        var trackingOptions = { label: $(event.target).attr('href') + ' : ' + stepNavSize }
+        var dimension28 = $(event.target).closest('.app-step-nav__list').attr('data-length')
 
         if (dimension28) {
           trackingOptions.dimension28 = dimension28
