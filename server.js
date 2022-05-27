@@ -13,7 +13,7 @@ const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 
 // Run before other code to make sure variables from .env are available
-const result = dotenv.config()
+dotenv.config()
 
 // Local dependencies
 const middleware = [
@@ -49,8 +49,7 @@ if (useV6) {
 
 // Set up configuration variables
 const releaseVersion = packageJson.version
-const glitchEnv = (process.env.PROJECT_REMIX_CHAIN) ? 'production' : false // glitch.com
-const env = (process.env.NODE_ENV || glitchEnv || 'development').toLowerCase()
+const env = utils.getNodeEnv()
 const useAutoStoreData = process.env.USE_AUTO_STORE_DATA || config.useAutoStoreData
 const useCookieSessionStore = process.env.USE_COOKIE_SESSION_STORE || config.useCookieSessionStore
 let useHttps = process.env.USE_HTTPS || config.useHttps

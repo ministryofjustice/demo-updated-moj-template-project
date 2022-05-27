@@ -18,7 +18,7 @@ Example usage:
 */
 
 module.exports = {
-  applicationName: "Recall Decisions"
+  applicationName: 'Recall Decisions'
   // Insert values here
 
 }
