@@ -38,7 +38,7 @@
     "gray-matter": "^4.0.3",
     "gulp": "^4.0.2",
     "gulp-nodemon": "^2.2.1",
-    "gulp-sass": "^5.0.0",
+    "gulp-sass": "^5.1.0",
     "inquirer": "^8.2.0",
     "lodash": "^4.17.21",
     "luxon": "^2.4.0",
