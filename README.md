@@ -1,3 +1,5 @@
+This demo is now archived, the responsibility of the template is now within the CP team.
+
 This repository is for prototyping upgrades of the Gov.uk Prototype Kit (v12.1.0) and npm dependency updates before applying them to the moj-prototype-template repository. This site is live on the Cloud Platform, see the top right for the link. It will display a snapshot of the makerecall-prototype application. This is used as reference only to test an application against the updates.
 
 # MoJ Prototype Kit Template
